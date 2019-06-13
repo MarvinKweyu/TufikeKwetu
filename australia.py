@@ -45,6 +45,7 @@ def compare_data(column_name):
     Writes summary statistics to a csv from which it creates HTML content"""
 
 
+
     df_2017_fatalities = df_2017.groupby(column_name)
     df_1989_fatalities = df_1989.groupby(column_name)
     # complete 1989 against data so far collected this year(2017 in this case)
@@ -153,6 +154,23 @@ year1989 = dataset[2]
 title = "Fatalities_in_crash_type"
 # draw chart for crash type
 draw_bar_chart(specific_data, year2017, year1989, title, summary_stat)
+
+
+#%%
+
+# fatality according to road user roles
+
+# remove the -9 on both frames
+column_name = 'Road_User'
+df_2017 = df_2017[df_2017[column_name] != '9']
+df_1989 = df_1989[df_1989[column_name] != '9']
+
+dataset, summary_stat = compare_data(column_name)
+
+# specific_data = dataset[0]
+# year2017 = dataset[1]
+# year1989 = dataset[2]
+# title = "F"
 
 
 #%%
