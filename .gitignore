@@ -3,4 +3,4 @@
 
 # local project settings
 ./.vscode
-./*.pdf
+*.pdf
