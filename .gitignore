@@ -1,6 +1,6 @@
 # ignore the checkpoints
-./.ipynb_checkpoints
+.ipynb_checkpoints
 
 # local project settings
-./.vscode
+.vscode
 *.pdf
