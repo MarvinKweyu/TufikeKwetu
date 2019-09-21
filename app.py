@@ -24,13 +24,14 @@ items_for_compare = ['Year', 'State', 'Month']
 def create_figure(according_to):
     """Create main plot. """
     # group by category selected
+    fatalities[according_to] = fatalities[according_to].astype(str)
     group = fatalities.groupby(according_to)
     source = ColumnDataSource(group)
     
-    plot = figure(plot_height=600, plot_width=900, title=f"Fatalities according to {according_to}")
+    plot = figure(plot_height=600, plot_width=900, x_range=group, title=f"Fatalities according to {according_to}")
 
     if according_to == 'Year':
-        plot.line(x='Year', y='Age_count', line_width=3, source=source)
+        plot.line(x='Year', y='Age_count', line_width=2, source=source)
     elif according_to == "State":
         plot.vbar(x='State', top='Age_count', width=0.8, source=source)
     else:
