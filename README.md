@@ -2,6 +2,8 @@
 
 A flask application showing traffic fatalities over a period of 20 years in Australia.
 
+![Demo](demo/traffic_analysis.gif)
+
 ## Setup
 
 Create virtual environment and install requirements.
