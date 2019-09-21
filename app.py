@@ -2,12 +2,13 @@ from flask import Flask, render_template, request
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.embed import components
+from bokeh.models.sources import ColumnDataSource
 
 
 app = Flask(__name__)
 
 # load dataset
-fatalities = pd.read_csv('./data/cleaned_data.csv')
+fatalities = pd.read_csv('./data/clean_data.csv')
 
 
 """ 
@@ -23,17 +24,19 @@ items_for_compare = ['Year', 'State', 'Month']
 def create_figure(according_to):
     """Create main plot. """
     # group by category selected
+    group = fatalities.groupby(according_to)
+    source = ColumnDataSource(group)
     
-    g = fatalities.groupby(according_to)
-    groups = [name for name, unused_df in g] # list of all available years for instance
-   
-    # get average fatality according to classification for y-axis
-    average_count = []
-    for item in groups:
+    plot = figure(plot_height=600, plot_width=900, title=f"Fatalities according to {according_to}")
 
-
-    plot = figure(plot_height=600, plot_width=600, title=according_to)
-    plot.line(groups, )
+    if according_to == 'Year':
+        plot.line(x='Year', y='Age_count', line_width=3, source=source)
+    elif according_to == "State":
+        plot.vbar(x='State', top='Age_count', width=0.8, source=source)
+    else:
+        plot.vbar(x='Month', top='Age_count', width=0.8, source=source)
+    
+    plot.toolbar.logo = None
 
     return plot
 
