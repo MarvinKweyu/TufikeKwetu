@@ -1,9 +1,15 @@
 # Traffic Analysis
 
-An analysis of traffic fatalities over a period of 20 years in Australia.
+A flask application showing traffic fatalities over a period of 20 years in Australia.
 
-[Preview]( https://marvinkweyu.github.io/Traffic-Analysis)
-## ToDo
-- [ ] Generate homepage automatically.
+## Setup
 
-- [ ] Add more analysis information.
+Create virtual environment and install requirements.
+```bash
+pip install -r requirements.txt
+```
+
+Run application
+```bash
+python app.py
+```
