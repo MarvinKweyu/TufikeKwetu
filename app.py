@@ -40,7 +40,7 @@ def create_figure(according_to):
     
 
     plot = figure(plot_height=600, plot_width=900, x_range=group,
-                  title=f"Fatalities according to {according_to}", tooltips=TOOLTIPS)
+                  title=f"\nFatalities according to {according_to}", tooltips=TOOLTIPS)
 
     if according_to == 'Year':
         plot.line(x='Year', y='Age_count', line_width=2, source=source)
