@@ -3,6 +3,7 @@
 
 # local project settings
 .vscode
+.traffic
 *.pdf
 
 # Created by https://www.gitignore.io/api/flask,linux
