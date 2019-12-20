@@ -1,10 +1,12 @@
 # Traffic Analysis
 
-![Python](https://img.shields.io/badge/Python-3.7-lightgreen)   ![Version](https://img.shields.io/badge/Version-2.0-orange)
+![Python](https://img.shields.io/badge/Python-3.7-lightgreen)   ![Version](https://img.shields.io/badge/Version-2.1-orange)
 
 A flask application showing traffic fatalities over a period of 20 years in Australia.
 
 ![Demo](demo/traffic_analysis.gif)
+
+[Try it out](https://traffic-analysis-display.herokuapp.com/?item_for_compare=Year)
 
 ## Setup
 

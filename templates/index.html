@@ -7,32 +7,38 @@
 
     <script src="//cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
     <script src="//cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css')}}" />
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <H2>Fatality comparison</H2>
-    <small>For a detailed project path:<a href="https://github.com/MarvinKweyu/Traffic-Analysis">MarvinKweyu:Traffic analysis </a></small>
+    <div class="text-center">
+        <H2>Fatality comparison</H2>
+        <p>A traffic fatality vizualization</p>
+        <small>For a detailed project path:<a href="https://github.com/MarvinKweyu/Traffic-Analysis">MarvinKweyu:Traffic analysis </a></small>
+    </div>
 
     <form action="/">
         <select name="item_for_compare">
 
             {% for feature in the_items_for_compare %}
-            {% if feature == current_comparison %}
-            <option selected value="{{ feature }}">{{ feature }}</option>
-            {% else %}
-            <option value="{{ feature }}">{{ feature }}</option>
-            {% endif %}
+                {% if feature == current_comparison %}
+                    <option selected value="{{ feature }}">{{ feature }}</option>
+                {% else %}
+                    <option value="{{ feature }}">{{ feature }}</option>
+                {% endif %}
             {% endfor %}
 
         </select>
         <input type="submit">
     </form>
-    <!-- using safe tells that the code you are passing is safe to render within a browser -->
-    <p>Some graph</p>
-    {{ script|safe }}
-    {{ div|safe }}
+
+    <div class="projH container">
+        <!-- using safe tells that the code you are passing is safe to render within a browser -->
+        {{ script|safe }}
+        {{ div|safe }}
+    </div>
 
 </body>
 
