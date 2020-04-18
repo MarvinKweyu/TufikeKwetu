@@ -20,22 +20,26 @@
     </div>
 
     <form action="/">
-        <select name="item_for_compare">
-
-            {% for feature in the_items_for_compare %}
+        <div class="row container">
+        <div class="col-12 col-md-4">
+            <select name="item_for_compare"  data-style="btn-info">
+                
+                {% for feature in the_items_for_compare %}
                 {% if feature == current_comparison %}
-                    <option selected value="{{ feature }}">{{ feature }}</option>
+                <option selected value="{{ feature }}">{{ feature }}</option>
                 {% else %}
-                    <option value="{{ feature }}">{{ feature }}</option>
+                <option value="{{ feature }}">{{ feature }}</option>
                 {% endif %}
-            {% endfor %}
-
-        </select>
-        <input type="submit">
+                {% endfor %}
+                
+            </select>
+            <input class="btn btn-primary" type="submit" value="Compare">
+            
+        </div>
+    </div>
     </form>
 
     <div class="projH container">
-        <!-- using safe tells that the code you are passing is safe to render within a browser -->
         {{ script|safe }}
         {{ div|safe }}
     </div>
