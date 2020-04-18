@@ -4,6 +4,9 @@ from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.models.sources import ColumnDataSource
 from bokeh.models import HoverTool
+from bokeh.transform import linear_cmap
+from bokeh.palettes import Spectral6
+from bokeh.models.annotations import ColorBar
 
 
 app = Flask(__name__)
@@ -33,26 +36,36 @@ def create_figure(according_to):
 
     if according_to == "Year":
         TOOLTIPS = [
-            ('Fatalities','$y'),
+            ('Fatalities', '$y'),
         ]
     else:
         TOOLTIPS = None
-    
 
     plot = figure(plot_height=600, plot_width=900, x_range=group,
-                  title=f"\nFatalities according to {according_to}", tooltips=TOOLTIPS)
+                  title=f"\nFatalities according to {according_to}", tooltips=TOOLTIPS, y_axis_label="Road Fatality count", x_axis_label=f"{according_to}")
+    plot.title.text_font_size = '13pt'
+    plot.title.align = 'center'
 
     if according_to == 'Year':
         plot.line(x='Year', y='Age_count', line_width=2, source=source)
     elif according_to == "State":
         plot.vbar(x='State', top='Age_count', width=0.8, source=source)
+       
     else:
-        plot.vbar(x='Month', top='Age_count', width=0.8, source=source)
-    
+         # Use the field name of the column source
+        mapper = linear_cmap(field_name='Age_count', palette=Spectral6 ,low=min(source.data['Age_count']) ,high=max(source.data['Age_count']))
+      
+        plot.circle(x='Month', y='Age_count',line_color=mapper,color=mapper, fill_alpha=1, size=12,source=source)
+
+        color_bar = ColorBar(color_mapper=mapper['transform'], width=8,  location=(0,0))
+
+        plot.add_layout(color_bar, 'right')
+
     plot.toolbar.logo = None
+    plot.toolbar.autohide = True
 
     hover = plot.select(dict(type=HoverTool))
-    hover.mode = 'vline' # hover mode to year
+    hover.mode = 'vline'  # hover mode to year
 
     return plot
 
@@ -78,9 +91,7 @@ def create_hover():
     <div>
      """
 
-
     return HoverTool(tooltips=hover_html)
-    
 
 
 @app.route('/')
@@ -90,17 +101,16 @@ def index():
     current_comparison = request.args.get("item_for_compare")
     if current_comparison == None:
         current_comparison = "Year"
-    
+
     # hover_tool = create_hover()
     # create plot
     plot = create_figure(current_comparison)
 
     # embed plot to html
-    script,div = components(plot)
+    script, div = components(plot)
 
-    return render_template("index.html",script=script, div=div, the_items_for_compare = items_for_compare,current_comparison=current_comparison)
+    return render_template("index.html", script=script, div=div, the_items_for_compare=items_for_compare, current_comparison=current_comparison)
 
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-    
