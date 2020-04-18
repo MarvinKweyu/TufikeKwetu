@@ -6,9 +6,6 @@
 .traffic
 *.pdf
 
-# Created by https://www.gitignore.io/api/flask,linux
-# Edit at https://www.gitignore.io/?templates=flask,linux
-
 ### Flask ###
 instance/*
 !instance/.gitignore
@@ -133,5 +130,3 @@ dmypy.json
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
-# End of https://www.gitignore.io/api/flask,linux
