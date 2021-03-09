@@ -13,7 +13,7 @@ mccabe==0.6.1
 numpy==1.17.2
 packaging==19.1
 pandas==0.25.1
-Pillow==6.2.0
+Pillow==7.1.0
 pycodestyle==2.5.0
 pylint==2.3.1
 pyparsing==2.4.2
