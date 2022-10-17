@@ -1,9 +1,9 @@
-# TufikeNyumbani
+# TufikeKwetu
 
 ![Python](https://img.shields.io/badge/Python-3.7-lightgreen)   ![Version](https://img.shields.io/badge/Version-2.0-orange)
 ![GitHub](https://img.shields.io/github/license/MarvinKweyu/Traffic-Analysis)
 
-A flask application showing traffic fatalities over a period of 20 years in Australia.
+> A display of traffic fatalities over a period of 20 years in Australia.
 
 ![Demo](demo/traffic_analysis.gif)
 
@@ -17,6 +17,10 @@ This EDA, is meant to look into the data and uncover possible findings in a bid 
 We compare cumulative road accidents among other things on year , month and state.
 
 You can [try it out](https://traffic-analysis-display.herokuapp.com/?item_for_compare=Year) yourself. :wink:
+
+
+## Setup
+
 
 ## Roadmap
 
